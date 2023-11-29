@@ -1,0 +1,48 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: bastianpaetzold-poi-map-app-dev
+  annotations:
+    argocd/app-name: bastianpaetzold-poi-map-app-dev
+    backstage.io/kubernetes-id: bastianpaetzold-poi-map-app
+    backstage.io/kubernetes-namespace: bastianpaetzold
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: rhdh23-lab/bastianpaetzold-frontend
+    janus-idp.io/tekton-enabled: 'true'
+  tags:
+    - typescript
+    - angular
+    - workshop
+  links:
+    - url: https://console-openshift-console.apps.rosa-m9x67.dusy.p1.openshiftapps.com/dev-pipelines/ns/bastianpaetzold/
+      title: Pipelines
+      icon: web
+    - url: https://console-openshift-console.apps.rosa-m9x67.dusy.p1.openshiftapps.com/k8s/ns/bastianpaetzold/deployments/bastianpaetzold-poi-map-app
+      title: Deployment
+      icon: web
+    - url: https://devspaces.apps.rosa-m9x67.dusy.p1.openshiftapps.com/#https://github.com/rhdh23-lab/bastianpaetzold-frontend?che-editor=che-incubator/che-code/latest&devfilePath=.devfile-vscode.yaml
+      title: OpenShift Dev Spaces (VS Code)
+      icon: web
+    - url: http://bastianpaetzold-poi-map-app-bastianpaetzold.apps.rosa-m9x67.dusy.p1.openshiftapps.com
+      title: Map
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: "user:default/bastianpaetzold"
+  system: workshop-system-bastianpaetzold
+  consumesApis:
+    - gateway-api-bastianpaetzold
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: workshop-system-bastianpaetzold
+  tags:
+    - backstage
+    - janus-idp
+    - openshift
+    - workshop
+    - rh-summit
+spec:
+  owner: "user:default/bastianpaetzold"
